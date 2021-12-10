@@ -10,7 +10,7 @@ class ShowBook extends Component {
     const { book } = this.props;
 
     return (
-      <div className="gallery-book">
+      <div className="container-img">
         <img
           alt={`Book cover for ${book.title}`}
           className="gallery-img"

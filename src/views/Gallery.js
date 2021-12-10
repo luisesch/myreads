@@ -9,12 +9,20 @@ class Gallery extends Component {
   };
 
   render() {
-    const { books } = this.props;
+    const { books, onChangeShelf } = this.props;
     return (
       <div>
-        <ListBooks books={books} header="Currently reading" />
-        <ListBooks books={books} header="Want to read" />
-        <ListBooks books={books} header="Read" />
+        <ListBooks
+          books={books}
+          header="Currently reading"
+          onChangeShelf={onChangeShelf}
+        />
+        <ListBooks
+          books={books}
+          header="Want to read"
+          onChangeShelf={onChangeShelf}
+        />
+        <ListBooks books={books} header="Read" onChangeShelf={onChangeShelf} />
       </div>
     );
   }

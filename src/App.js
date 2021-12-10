@@ -21,6 +21,21 @@ class App extends Component {
     });
   }
 
+  addToShelf = (newBook, shelf) => {
+    const bookidx = this.state.books.findIndex(
+      (book) => book.title === newBook.title
+    );
+    let books = [...this.state.books];
+    let book = { ...books[bookidx] };
+    book.shelf = shelf;
+    books[bookidx] = book;
+    BooksAPI.update(newBook, shelf).then((newBook, shelf) => {
+      this.setState(() => ({
+        books,
+      }));
+    });
+  };
+
   render() {
     return (
       <div>
@@ -30,11 +45,21 @@ class App extends Component {
             <Route
               exact
               path="/"
-              element={<Gallery books={this.state.books} />}
+              element={
+                <Gallery
+                  books={this.state.books}
+                  onChangeShelf={this.addToShelf}
+                />
+              }
             />
             <Route
               path="/search"
-              element={<SearchBook books={this.state.books} />}
+              element={
+                <SearchBook
+                  books={this.state.books}
+                  onChangeShelf={this.addToShelf}
+                />
+              }
             />
           </Routes>
         </main>

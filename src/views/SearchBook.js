@@ -22,7 +22,7 @@ class SearchBook extends Component {
 
   render() {
     const { query } = this.state;
-    const { books } = this.props;
+    const { books, onChangeShelf } = this.props;
 
     const filteredBooks =
       query === ""
@@ -48,7 +48,7 @@ class SearchBook extends Component {
             <button onClick={this.clearQuery}>Show all</button>
           </div>
         )}
-        <ListBooks books={filteredBooks} />;
+        <ListBooks books={filteredBooks} onChangeShelf={onChangeShelf} />;
       </div>
     );
   }
