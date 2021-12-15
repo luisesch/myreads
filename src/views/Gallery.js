@@ -10,19 +10,32 @@ class Gallery extends Component {
 
   render() {
     const { books, onChangeShelf } = this.props;
+
+    const booksCurrently = books.filter(
+      (book) => book.shelf === "currentlyReading"
+    );
+
+    const booksWant = books.filter((book) => book.shelf === "wantToRead");
+
+    const booksRead = books.filter((book) => book.shelf === "read");
+
     return (
       <div>
         <ListBooks
-          books={books}
+          books={booksCurrently}
           header="Currently reading"
           onChangeShelf={onChangeShelf}
         />
         <ListBooks
-          books={books}
+          books={booksWant}
           header="Want to read"
           onChangeShelf={onChangeShelf}
         />
-        <ListBooks books={books} header="Read" onChangeShelf={onChangeShelf} />
+        <ListBooks
+          books={booksRead}
+          header="Read"
+          onChangeShelf={onChangeShelf}
+        />
       </div>
     );
   }
