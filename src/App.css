@@ -57,20 +57,22 @@
   justify-content: space-between;
 }
 
-.gallery-row > div {
+.gallery-item {
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 306px;
   padding: 30px 0;
-  overflow: hidden;
 }
 
 .container-img {
-  flex: 1;
+  height: 300px;
   overflow: hidden;
 }
 
 .gallery-img {
   width: 100%;
+}
+
+.book-title {
+  font-weight: bold;
 }

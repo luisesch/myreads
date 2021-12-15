@@ -48,7 +48,7 @@ class SearchBook extends Component {
             <button onClick={this.clearQuery}>Show all</button>
           </div>
         )}
-        <ListBooks books={filteredBooks} onChangeShelf={onChangeShelf} />;
+        <ListBooks books={filteredBooks} onChangeShelf={onChangeShelf} />
       </div>
     );
   }

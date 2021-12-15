@@ -10,12 +10,20 @@ class ShowBook extends Component {
     const { book } = this.props;
 
     return (
-      <div className="container-img">
-        <img
-          alt={`Book cover for ${book.title}`}
-          className="gallery-img"
-          src={book.imageLinks.thumbnail}
-        />
+      <div>
+        <div className="container-img">
+          <img
+            alt={`Book cover for ${book.title}`}
+            className="gallery-img"
+            src={book.imageLinks.thumbnail}
+          />
+        </div>
+        <p className="book-title">{book.title}</p>
+        <p>
+          {book.authors.map((author, index) =>
+            index + 1 < book.authors.length ? author + ", " : author
+          )}
+        </p>
       </div>
     );
   }

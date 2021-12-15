@@ -21,31 +21,17 @@ class ListBooks extends Component {
         {header !== null && <h1>{header}</h1>}
         <div className="gallery-row">
           {books.map((book, index) => (
-            <div>
+            <div key={index} className="gallery-item">
               <ShowBook key={index} book={book} />
               <p>Current shelf: {book.shelf}</p>
               <select
                 onChange={(event) => onChangeShelf(book, event.target.value)}
                 className="select"
+                defaultValue={book.shelf}
               >
-                <option
-                  value="currentlyReading"
-                  selected={this.checkSelected(book.shelf, "currentlyReading")}
-                >
-                  Currently reading
-                </option>
-                <option
-                  value="wantToRead"
-                  selected={this.checkSelected(book.shelf, "wantToRead")}
-                >
-                  Want to read
-                </option>
-                <option
-                  value="read"
-                  selected={this.checkSelected(book.shelf, "read")}
-                >
-                  Have read
-                </option>
+                <option value="currentlyReading">Currently reading</option>
+                <option value="wantToRead">Want to read</option>
+                <option value="read">Have read</option>
               </select>
             </div>
           ))}
