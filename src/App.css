@@ -1,11 +1,19 @@
 /* General */
 
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+  font-family: Lato;
+}
+
+#root > div {
+  display: flex;
+  flex-direction: column;
+}
+
 .main {
-  max-width: 1000px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
   padding: 0 40px 40px;
 }
 
@@ -24,6 +32,11 @@
 
 /* Nav */
 
+nav {
+  background: #ECE4DB;
+  border-bottom: 2px solid white;
+}
+
 .nav-list {
   display: flex;
   flex-direction: row;
@@ -36,6 +49,17 @@
   margin-left: 10px;
 }
 
+.nav-element a {
+  color: black;
+  text-decoration: none;
+  padding: 4px;
+}
+
+.nav-element a:hover,
+.nav-element a:focus {
+  border-bottom: 2px solid #00072D;
+}
+
 /* Gallery */
 
 .gallery-container {
@@ -46,27 +70,31 @@
 
 .gallery-container h1 {
   width: 100%;
-  max-width: 1000px;
 }
 
 .gallery-row {
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  width: calc(100% + 20px);
+  margin: 0 -10px;
 }
 
 .gallery-item {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 30%;
-  padding: 30px 0;
+  max-width: 220px;
+  margin-bottom: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
 }
 
 .container-img {
   height: 300px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .gallery-img {
@@ -75,4 +103,23 @@
 
 .book-title {
   font-weight: bold;
+}
+
+.select-shelf {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 260px;
+  appearance: none;
+  background-color: black;
+  background-image: url("./icons/arrow-drop-down.svg");
+  border-radius: 50%;
+  font-size: 0;
+}
+
+.book-separator {
+  width: 30%;
+  margin: 20px auto auto 0;
+  border: 1px solid #ECE4DB;
 }

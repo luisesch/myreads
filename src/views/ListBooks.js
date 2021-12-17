@@ -23,10 +23,9 @@ class ListBooks extends Component {
           {books.map((book, index) => (
             <div key={index} className="gallery-item">
               <ShowBook key={index} book={book} />
-              <p>Current shelf: {book.shelf}</p>
               <select
                 onChange={(event) => onChangeShelf(book, event.target.value)}
-                className="select"
+                className="select select-shelf"
                 defaultValue={book.shelf}
               >
                 <option value="currentlyReading">Currently reading</option>
