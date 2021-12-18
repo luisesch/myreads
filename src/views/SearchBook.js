@@ -6,26 +6,49 @@ import ListBooks from "./ListBooks";
 
 class SearchBook extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    booksOnShelves: PropTypes.array.isRequired,
     onChangeShelf: PropTypes.func.isRequired,
-    onSearchBooks: PropTypes.func.isRequired,
   };
 
   state = {
     query: "",
+    filteredBooks: [],
   };
 
   updateQuery = (query) => {
     this.setState(() => ({
       query: query,
     }));
-    this.props.onSearchBooks(query);
+    this.searchBooks(query);
   };
 
   clearQuery = () => this.updateQuery("");
 
+  searchBooks = (query) => {
+    if (query !== "") {
+      BooksAPI.search(query).then((books) => {
+        this.setState(() => ({
+          filteredBooks: books.length > 0 ? books : [],
+        }));
+      });
+    } else {
+      this.setState(() => ({
+        filteredBooks: [],
+      }));
+    }
+  };
+
   render() {
-    const { books, onChangeShelf } = this.props;
+    const { booksOnShelves, onChangeShelf } = this.props;
+    const books = this.state.filteredBooks;
+
+    for (const bookOnShelf of booksOnShelves) {
+      for (const book of books) {
+        if (book.id === bookOnShelf.id) {
+          book.shelf = bookOnShelf.shelf;
+        }
+      }
+    }
 
     return (
       <div>

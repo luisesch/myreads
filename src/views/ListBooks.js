@@ -14,11 +14,10 @@ class ListBooks extends Component {
   };
 
   render() {
-    const { books, header, onChangeShelf } = this.props;
+    const { books, onChangeShelf } = this.props;
 
     return (
       <div className="gallery-container">
-        {header !== null && <h1>{header}</h1>}
         <div className="gallery-row">
           {books.map((book, index) => (
             <div key={index} className="gallery-item">
@@ -26,8 +25,9 @@ class ListBooks extends Component {
               <select
                 onChange={(event) => onChangeShelf(book, event.target.value)}
                 className="select select-shelf"
-                defaultValue={book.shelf}
+                value={book.shelf}
               >
+                <option value="None">None</option>
                 <option value="currentlyReading">Currently reading</option>
                 <option value="wantToRead">Want to read</option>
                 <option value="read">Have read</option>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import ListBooks from "./ListBooks";
+import EmptyShelf from "./EmptyShelf";
 
 class Gallery extends Component {
   static propTypes = {
@@ -21,21 +22,30 @@ class Gallery extends Component {
 
     return (
       <div>
-        <ListBooks
-          books={booksCurrently}
-          header="Currently reading"
-          onChangeShelf={onChangeShelf}
-        />
-        <ListBooks
-          books={booksWant}
-          header="Want to read"
-          onChangeShelf={onChangeShelf}
-        />
-        <ListBooks
-          books={booksRead}
-          header="Read"
-          onChangeShelf={onChangeShelf}
-        />
+        <div className="shelf-currently">
+          <h2>Currently reading</h2>
+          {booksCurrently.length > 0 ? (
+            <ListBooks books={booksCurrently} onChangeShelf={onChangeShelf} />
+          ) : (
+            <EmptyShelf />
+          )}
+        </div>
+        <div className="shelf-want">
+          <h2>Want to read</h2>
+          {booksWant.length > 0 ? (
+            <ListBooks books={booksWant} onChangeShelf={onChangeShelf} />
+          ) : (
+            <EmptyShelf />
+          )}
+        </div>
+        <div className="shelf-read">
+          <h2>Have read</h2>
+          {booksRead.length > 0 ? (
+            <ListBooks books={booksRead} onChangeShelf={onChangeShelf} />
+          ) : (
+            <EmptyShelf />
+          )}
+        </div>
       </div>
     );
   }

@@ -10,7 +10,6 @@ import "./App.css";
 class App extends Component {
   state = {
     books: [],
-    filteredBooks: [],
   };
 
   componentDidMount() {
@@ -21,32 +20,15 @@ class App extends Component {
     });
   }
 
-  searchBooks = (query) => {
-    if (query !== "") {
-      BooksAPI.search(query).then((books) => {
+  addToShelf = (book, shelf) => {
+    BooksAPI.get(book.id).then((newBook) => {
+      BooksAPI.update(book, shelf).then((res) => {
+        const booksWithoutChanged = this.state.books.filter(
+          (book) => book.id !== newBook.id
+        );
+        newBook.shelf = shelf;
         this.setState(() => ({
-          filteredBooks: books.length > 0 ? books : [],
-        }));
-      });
-    } else {
-      this.setState(() => ({
-        filteredBooks: [],
-      }));
-    }
-  };
-
-  addToShelf = (newBook, shelf) => {
-    BooksAPI.get(newBook.id).then((newBook) => {
-      const bookidx = this.state.books.findIndex(
-        (book) => book.title === newBook.title
-      );
-      let books = [...this.state.books];
-      let book = { ...books[bookidx] };
-      book.shelf = shelf;
-      books[bookidx] = book;
-      BooksAPI.update(newBook, shelf).then((newBook, shelf) => {
-        this.setState(() => ({
-          books,
+          books: [...booksWithoutChanged, newBook],
         }));
       });
     });
@@ -72,9 +54,8 @@ class App extends Component {
               path="/search"
               element={
                 <SearchBook
-                  books={this.state.filteredBooks}
+                  booksOnShelves={this.state.books}
                   onChangeShelf={this.addToShelf}
-                  onSearchBooks={this.searchBooks}
                 />
               }
             />
