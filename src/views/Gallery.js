@@ -22,6 +22,7 @@ class Gallery extends Component {
 
     return (
       <div>
+        <h1>Your books</h1>
         <div className="shelf-currently">
           <h2>Currently reading</h2>
           {booksCurrently.length > 0 ? (
