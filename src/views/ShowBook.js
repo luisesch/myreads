@@ -24,10 +24,11 @@ class ShowBook extends Component {
         <div>
           <p className="book-title">{book.title}</p>
           <p>
-            {book.authors &&
-              book.authors.map((author, index) =>
-                index + 1 < book.authors.length ? author + ", " : author
-              )}
+            {book.authors
+              ? book.authors.map((author, index) =>
+                  index + 1 < book.authors.length ? author + ", " : author
+                )
+              : "-"}
           </p>
         </div>
       </div>

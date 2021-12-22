@@ -6,11 +6,7 @@ import ShowBook from "./ShowBook";
 class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    header: PropTypes.string,
-  };
-
-  checkSelected = (value, shelf) => {
-    return value === shelf;
+    onChangeShelf: PropTypes.func.isRequired,
   };
 
   render() {

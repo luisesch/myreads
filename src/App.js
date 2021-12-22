@@ -12,6 +12,7 @@ class App extends Component {
     books: [],
   };
 
+  // Get all books that are currently assigned to a shelf
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState(() => ({
@@ -20,6 +21,7 @@ class App extends Component {
     });
   }
 
+  // Find book via API and add to shelf
   addToShelf = (book, shelf) => {
     BooksAPI.get(book.id).then((newBook) => {
       BooksAPI.update(book, shelf).then((res) => {

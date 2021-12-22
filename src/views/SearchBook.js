@@ -15,6 +15,7 @@ class SearchBook extends Component {
     filteredBooks: [],
   };
 
+  // Update query in state when search input is changed
   updateQuery = (query) => {
     this.setState(() => ({
       query: query,
@@ -22,8 +23,10 @@ class SearchBook extends Component {
     this.searchBooks(query);
   };
 
+  // Clear query
   clearQuery = () => this.updateQuery("");
 
+  // Search books for search input
   searchBooks = (query) => {
     if (query !== "") {
       BooksAPI.search(query).then((books) => {
@@ -42,6 +45,7 @@ class SearchBook extends Component {
     const { booksOnShelves, onChangeShelf } = this.props;
     const books = this.state.filteredBooks;
 
+    // Find books that are currently on a shelf and set shelf
     for (const bookOnShelf of booksOnShelves) {
       for (const book of books) {
         if (book.id === bookOnShelf.id) {
@@ -71,7 +75,11 @@ class SearchBook extends Component {
             </button>
           )}
         </div>
-        {<ListBooks books={books} onChangeShelf={onChangeShelf} />}
+        {this.state.query !== "" && books.length <= 0 ? (
+          <p>No results for your search</p>
+        ) : (
+          <ListBooks books={books} onChangeShelf={onChangeShelf} />
+        )}
       </div>
     );
   }

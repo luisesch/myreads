@@ -7,17 +7,17 @@ import EmptyShelf from "./EmptyShelf";
 class Gallery extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
   };
 
   render() {
     const { books, onChangeShelf } = this.props;
 
+    // Filter books by shelves and store in variables
     const booksCurrently = books.filter(
       (book) => book.shelf === "currentlyReading"
     );
-
     const booksWant = books.filter((book) => book.shelf === "wantToRead");
-
     const booksRead = books.filter((book) => book.shelf === "read");
 
     return (
