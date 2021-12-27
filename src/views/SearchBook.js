@@ -27,13 +27,12 @@ class SearchBook extends Component {
   clearQuery = () => this.updateQuery("");
 
   // Search books for search input
-  searchBooks = (query) => {
+  searchBooks = async (query) => {
     if (query !== "") {
-      BooksAPI.search(query).then((books) => {
-        this.setState(() => ({
-          filteredBooks: books.length > 0 ? books : [],
-        }));
-      });
+      const books = await BooksAPI.search(query);
+      this.setState(() => ({
+        filteredBooks: books.length > 0 ? books : [],
+      }));
     } else {
       this.setState(() => ({
         filteredBooks: [],

@@ -13,27 +13,24 @@ class App extends Component {
   };
 
   // Get all books that are currently assigned to a shelf
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState(() => ({
-        books,
-      }));
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    this.setState({
+      books,
     });
   }
 
   // Find book via API and add to shelf
-  addToShelf = (book, shelf) => {
-    BooksAPI.get(book.id).then((newBook) => {
-      BooksAPI.update(book, shelf).then((res) => {
-        const booksWithoutChanged = this.state.books.filter(
-          (book) => book.id !== newBook.id
-        );
-        newBook.shelf = shelf;
-        this.setState(() => ({
-          books: [...booksWithoutChanged, newBook],
-        }));
-      });
-    });
+  addToShelf = async (book, shelf) => {
+    BooksAPI.update(book, shelf);
+    const newBook = await BooksAPI.get(book.id);
+    const booksWithoutChanged = this.state.books.filter(
+      (book) => book.id !== newBook.id
+    );
+    newBook.shelf = shelf;
+    this.setState(() => ({
+      books: [...booksWithoutChanged, newBook],
+    }));
   };
 
   render() {

@@ -15,9 +15,9 @@ class ListBooks extends Component {
     return (
       <div className="gallery-container">
         <div className="gallery-row">
-          {books.map((book, index) => (
-            <div key={index} className="gallery-item">
-              <ShowBook key={index} book={book} />
+          {books.map((book) => (
+            <div key={book.id} className="gallery-item">
+              <ShowBook key={book.id} book={book} />
               <select
                 onChange={(event) => onChangeShelf(book, event.target.value)}
                 className="select select-shelf"
