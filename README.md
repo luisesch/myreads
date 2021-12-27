@@ -10,9 +10,20 @@ The web app allows users to:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+In order to launch MyReads you need to run the following commands in the project directory:
+
+- `yarn install` to install all project dependencies
+- `yarn start` to run the app in development mode
+
+More information can be found in the folllowing:
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn install`
+
+Installs all project dependencies.\
 
 ### `yarn start`
 
