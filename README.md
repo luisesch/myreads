@@ -15,7 +15,7 @@ In order to launch MyReads you need to run the following commands in the project
 - `yarn install` to install all project dependencies
 - `yarn start` to run the app in development mode
 
-More information can be found in the folllowing:
+More information:
 
 ## Available Scripts
 
